@@ -8,6 +8,7 @@ export default function Home() {
   const initialViewRef = useRef<HTMLDivElement>(null);
   const seaViewRef = useRef<HTMLDivElement>(null);
   const [showSea, setShowSea] = useState(false);
+  const [isMovingDown, setIsMovingDown] = useState(false);
 
   // 雲の描画
   useEffect(() => {
@@ -43,16 +44,14 @@ export default function Home() {
 
   // クリックしたら海が表示される
   const handleClickMore = () => {
-    if (initialViewRef.current) {
-      initialViewRef.current.classList.add('move-down-fade');
-      setTimeout(() => {
-        setShowSea(true);
-      }, 500); // フェードアウトの時間に合わせて調整
-    }
+    setIsMovingDown(true);
+    setTimeout(() => {
+      setShowSea(true);
+    }, 500); // アニメーションの時間と合わせる
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center overflow-hidden">
+    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''}`}>
       <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 transition-opacity duration-500 flex items-center justify-center">
         <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
         <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

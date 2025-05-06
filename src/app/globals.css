@@ -30,7 +30,7 @@ body {
 }
 
 .bg-sea-blue {
-  background-color: #008080; /* 青緑色の海 */
+  background-color: #1c04a2; /* 青緑色の海 */
 }
 
 .cloud-container {
@@ -75,7 +75,7 @@ body {
   }
 }
 
-.move-down-fade {
+.move-down {
   transform: translateY(100vh); /* 下に移動 */
   opacity: 0; /* フェードアウト */
 }
