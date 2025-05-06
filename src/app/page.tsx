@@ -51,8 +51,8 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''}`}>
-      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 transition-opacity duration-500 flex items-center justify-center">
+    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''} ${isMovingDown ? 'bg-sea-blue' : 'bg-sky-blue'}`}>
+      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 flex items-center justify-center">
         <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
         <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
@@ -63,7 +63,6 @@ export default function Home() {
 
       {showSea && (
         <div ref={seaViewRef} className="absolute top-0 left-0 w-full h-full bg-sea-blue flex items-center justify-center z-0">
-          {/* 海、釣り針、魚の描画はここに追加します */}
           <div className="fishing-hook"></div>
           <div className="fish fish1"></div>
           <div className="fish fish2"></div>
