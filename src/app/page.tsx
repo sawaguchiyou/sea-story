@@ -1,10 +1,13 @@
 "use client"; // クライアントサイドレンダリングを指定
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const skyRef = useRef<HTMLDivElement>(null);
   const cloudContainerRef = useRef<HTMLDivElement>(null);
+  const initialViewRef = useRef<HTMLDivElement>(null);
+  const seaViewRef = useRef<HTMLDivElement>(null);
+  const [showSea, setShowSea] = useState(false);
 
   useEffect(() => {
     const sky = skyRef.current;
@@ -36,15 +39,36 @@ export default function Home() {
     cloud.style.opacity = `0.6 + Math.random() * 0.4`; // 透明度を少しランダムに
   };
 
+  // クリックしたら海が表示される
+  const handleClickMore = () => {
+    if (initialViewRef.current) {
+      initialViewRef.current.classList.add('fade-out');
+      setTimeout(() => {
+        setShowSea(true);
+      }, 500); // フェードアウトの時間に合わせて調整
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-sky-blue flex items-center justify-center">
-      <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
-          {/* JavaScriptで雲の要素が追加されます */}
+    <div className="min-h-screen flex items-center justify-center overflow-hidden">
+      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 transition-opacity duration-500">
+        <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
+            {/* 雲はここに追加されます */}
+          </div>
         </div>
+        <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
       </div>
-      <div className="text-2xl font-bold text-white z-10">click has more</div>
-      {/* 後で "click has more" の要素を追加します */}
+
+      {showSea && (
+        <div ref={seaViewRef} className="absolute top-0 left-0 w-full h-full bg-sea-blue flex items-center justify-center z-0">
+          {/* 海、釣り針、魚の描画はここに追加します */}
+          <div className="fishing-hook"></div>
+          <div className="fish">魚1</div>
+          <div className="fish">魚2</div>
+          {/* ... 他の魚 ... */}
+        </div>
+      )}
     </div>
   );
 }

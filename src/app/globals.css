@@ -29,6 +29,10 @@ body {
   background-color: #87CEEB; /* 水色の空 */
 }
 
+.bg-sea-blue {
+  background-color: #008080; /* 青緑色の海 */
+}
+
 .cloud-container {
   pointer-events: none; /* 下の要素をクリックできるように */
 }
@@ -69,4 +73,29 @@ body {
   100% {
     transform: translateX(200vw);
   }
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fishing-hook {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 30px solid #8B4513; /* 茶色の釣り針 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fish {
+  position: absolute;
+  background-color: orange; /* 例としての魚の色 */
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+  /* ... (魚の初期位置やランダムな動きのスタイルは後で追加) ... */
 }
