@@ -51,13 +51,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex items-center justify-center overflow-hidden">
-      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 transition-opacity duration-500">
-        <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden">
+      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 transition-opacity duration-500 flex items-center justify-center">
+        <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
+        <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
             {/* 雲はここに追加されます */}
           </div>
         </div>
-        <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
       </div>
 
       {showSea && (
