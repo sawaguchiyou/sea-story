@@ -9,6 +9,7 @@ export default function Home() {
   const seaViewRef = useRef<HTMLDivElement>(null);
   const [showSea, setShowSea] = useState(false);
 
+  // 雲の描画
   useEffect(() => {
     const sky = skyRef.current;
     const cloudContainer = cloudContainerRef.current;
@@ -26,6 +27,7 @@ export default function Home() {
     }
   }, []);
 
+  // 雲のプロパティを設定する関数
   const setCloudProperties = (cloud: HTMLDivElement) => {
     const startPosition = Math.random() * 100; // 0%から100%のランダムな開始位置
     const size = 50 + Math.random() * 50; // 50pxから100pxのランダムなサイズ
@@ -42,7 +44,7 @@ export default function Home() {
   // クリックしたら海が表示される
   const handleClickMore = () => {
     if (initialViewRef.current) {
-      initialViewRef.current.classList.add('fade-out');
+      initialViewRef.current.classList.add('move-down-fade');
       setTimeout(() => {
         setShowSea(true);
       }, 500); // フェードアウトの時間に合わせて調整
@@ -64,8 +66,9 @@ export default function Home() {
         <div ref={seaViewRef} className="absolute top-0 left-0 w-full h-full bg-sea-blue flex items-center justify-center z-0">
           {/* 海、釣り針、魚の描画はここに追加します */}
           <div className="fishing-hook"></div>
-          <div className="fish">魚1</div>
-          <div className="fish">魚2</div>
+          <div className="fish fish1"></div>
+          <div className="fish fish2"></div>
+          <div className="fish fish3"></div>
           {/* ... 他の魚 ... */}
         </div>
       )}

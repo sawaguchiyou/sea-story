@@ -75,8 +75,9 @@ body {
   }
 }
 
-.fade-out {
-  opacity: 0;
+.move-down-fade {
+  transform: translateY(100vh); /* 下に移動 */
+  opacity: 0; /* フェードアウト */
 }
 
 .fishing-hook {
@@ -93,9 +94,40 @@ body {
 
 .fish {
   position: absolute;
-  background-color: orange; /* 例としての魚の色 */
-  width: 40px;
-  height: 20px;
+  width: 60px;
+  height: 30px;
+  border: 2px solid white;
   border-radius: 50%;
+  background-color: transparent; /* 透明にする */
   /* ... (魚の初期位置やランダムな動きのスタイルは後で追加) ... */
 }
+
+.fish::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 20px solid white;
+  border-bottom: 10px solid transparent;
+  transform: translateY(-50%);
+}
+
+.fish1 {
+  top: 40%;
+  left: 20%;
+}
+
+.fish2 {
+  top: 60%;
+  left: 50%;
+}
+
+.fish3 {
+  top: 30%;
+  left: 80%;
+}
+
+/* 必要に応じて魚の初期位置を調整 */
