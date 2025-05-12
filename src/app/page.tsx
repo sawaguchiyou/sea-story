@@ -7,7 +7,6 @@ export default function Home() {
   const cloudContainerRef = useRef<HTMLDivElement>(null);
   const initialViewRef = useRef<HTMLDivElement>(null);
   const seaViewRef = useRef<HTMLDivElement>(null);
-  const [showSea, setShowSea] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false); // スクロール中かどうかを管理
 
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function Home() {
   const handleClickMore = () => {
     if (isScrolling) return; // スクロール中はクリックを無視
     setIsScrolling(true);
-    setShowSea(true); // 海の画面を表示
 
     window.scrollTo({
       top: window.innerHeight, // 画面の高さまでスクロール
@@ -64,7 +62,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div ref={seaViewRef} className="absolute top-full left-0 w-full h-screen bg-sea-blue flex items-center justify-center" style={{ display: showSea ? 'flex' : 'none' }}>
+      <div ref={seaViewRef} className="absolute top-full left-0 w-full h-screen bg-sea-blue flex items-center justify-center">
         <div className="fishing-hook"></div>
         <div className="fish fish1"></div>
         <div className="fish fish2"></div>
