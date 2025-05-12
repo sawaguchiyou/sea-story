@@ -1,4 +1,4 @@
-"use client"; // クライアントサイドレンダリングを指定
+"use client";
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,48 +10,46 @@ export default function Home() {
   const [showSea, setShowSea] = useState(false);
   const [isMovingDown, setIsMovingDown] = useState(false);
 
-  // 雲の描画
   useEffect(() => {
     const sky = skyRef.current;
     const cloudContainer = cloudContainerRef.current;
 
     if (sky && cloudContainer) {
-      // ここに空と雲を描画・アニメーションさせるJavaScriptのコードを書きます
-      const numberOfClouds = 5; // 雲の数
+      const numberOfClouds = 5;
       for (let i = 0; i < numberOfClouds; i++) {
         const cloud = document.createElement('div');
         cloud.className = 'cloud';
-        // 雲の初期位置、サイズ、アニメーションなどをランダムに設定する関数を呼び出す
         setCloudProperties(cloud);
         cloudContainer.appendChild(cloud);
       }
     }
   }, []);
 
-  // 雲のプロパティを設定する関数
   const setCloudProperties = (cloud: HTMLDivElement) => {
-    const startPosition = Math.random() * 100; // 0%から100%のランダムな開始位置
-    const size = 50 + Math.random() * 50; // 50pxから100pxのランダムなサイズ
-    const speed = 10 + Math.random() * 5; // アニメーション速度
+    const startPosition = Math.random() * 100;
+    const size = 50 + Math.random() * 50;
+    const speed = 10 + Math.random() * 5;
 
     cloud.style.width = `${size}px`;
-    cloud.style.height = `${size / 2}px`; // 雲は横長にする
+    cloud.style.height = `${size / 2}px`;
     cloud.style.left = `${startPosition}vw`;
-    cloud.style.top = `${10 + Math.random() * 30}vh`; // 少し高さをばらつかせる
+    cloud.style.top = `${10 + Math.random() * 30}vh`;
     cloud.style.animation = `moveCloud ${speed}s linear infinite`;
-    cloud.style.opacity = `0.6 + Math.random() * 0.4`; // 透明度を少しランダムに
+    cloud.style.opacity = `0.6 + Math.random() * 0.4`;
   };
 
-  // クリックしたら海が表示される
   const handleClickMore = () => {
     setIsMovingDown(true);
     setTimeout(() => {
       setShowSea(true);
+      if (initialViewRef.current) {
+        initialViewRef.current.style.display = 'none'; // 空の画面を非表示にする
+      }
     }, 500); // アニメーションの時間と合わせる
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''} ${!isMovingDown ? 'bg-sky-blue' : ''}`}>
+    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''} bg-sky-blue`}>
       <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 flex items-center justify-center">
         <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
         <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
