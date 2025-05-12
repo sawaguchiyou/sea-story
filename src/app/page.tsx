@@ -5,9 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 export default function Home() {
   const skyRef = useRef<HTMLDivElement>(null);
   const cloudContainerRef = useRef<HTMLDivElement>(null);
-  const initialViewRef = useRef<HTMLDivElement>(null);
   const seaViewRef = useRef<HTMLDivElement>(null);
-  const [isScrolling, setIsScrolling] = useState(false); // スクロール中かどうかを管理
+  const boatRef = useRef<HTMLDivElement>(null); // 船と釣り人用のref
 
   useEffect(() => {
     const sky = skyRef.current;
@@ -38,31 +37,28 @@ export default function Home() {
   };
 
   const handleClickMore = () => {
-    if (isScrolling) return; // スクロール中はクリックを無視
-    setIsScrolling(true);
-
     window.scrollTo({
-      top: window.innerHeight, // 画面の高さまでスクロール
-      behavior: 'smooth', // スムーズスクロール
+      top: window.innerHeight,
+      behavior: 'smooth',
     });
-
-    setTimeout(() => {
-      setIsScrolling(false); // スクロール完了
-    }, 500); // スクロール時間と合わせる (調整が必要)
   };
 
   return (
-    <div className="min-h-screen bg-sky-blue">
-      <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-screen flex items-center justify-center">
-        <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
-        <div ref={skyRef} className="absolute top-0 left-0 w-full h-screen overflow-hidden pointer-events-none">
-          <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
-            {/* 雲はここに追加されます */}
-          </div>
+    <div className="min-h-screen flex flex-col">
+      <div ref={skyRef} className="flex-grow bg-sky-blue relative overflow-hidden">
+        <div ref={cloudContainerRef} className="cloud-container absolute top-0 left-0 w-full h-full">
+          {/* 雲はここに追加されます */}
+        </div>
+        <div ref={boatRef} className="boat absolute">
+          {/* 船と釣り人 */}
+          <div className="fisherman"></div>
+        </div>
+        <div className="text-2xl font-bold text-white cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20" onClick={handleClickMore}>
+          click has more
         </div>
       </div>
 
-      <div ref={seaViewRef} className="absolute top-full left-0 w-full h-screen bg-sea-blue flex items-center justify-center">
+      <div ref={seaViewRef} className="h-1/5 bg-sea-blue flex items-center justify-center">
         <div className="fishing-hook"></div>
         <div className="fish fish1"></div>
         <div className="fish fish2"></div>
