@@ -134,26 +134,4 @@ body {
   left: 80%;
 }
 
-
-/* 船と釣り人のスタイル */
-.boat {
-  position: absolute;
-  bottom: 20%; /* 空の画面の下部に配置 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 20px;
-  background-color: #8B4513; /* 茶色 */
-  border-radius: 5px;
-}
-
-.fisherman {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 10px;
-  background-color: white;
-}
 /* 必要に応じて魚の初期位置を調整 */
