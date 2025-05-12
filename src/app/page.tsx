@@ -66,5 +66,6 @@ export default function Home() {
         {/* ... 他の魚 ... */}
       </div>
     </div>
+    // ここにゲームの内容を追加
   );
 }
