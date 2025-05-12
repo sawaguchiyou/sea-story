@@ -81,8 +81,7 @@ body {
 }
 
 .move-down {
-  transform: translateY(100vh) !important;
-  opacity: 0;
+  transform: translateY(100vh);
 }
 
 .fishing-hook {

@@ -51,9 +51,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center overflow-hidden relative
-      ${isMovingDown ? 'move-down' : ''} 
-      ${showSea ? 'bg-sea-blue' : 'bg-sky-blue'}`}>
+    <div className={`min-h-screen flex items-center justify-center overflow-hidden transition-transform duration-500 ${isMovingDown ? 'move-down' : ''} ${!isMovingDown ? 'bg-sky-blue' : ''}`}>
       <div ref={initialViewRef} className="absolute top-0 left-0 w-full h-full bg-sky-blue z-10 flex items-center justify-center">
         <div className="text-2xl font-bold text-white cursor-pointer z-20" onClick={handleClickMore}>click has more</div>
         <div ref={skyRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
