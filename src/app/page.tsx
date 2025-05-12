@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
   const skyRef = useRef<HTMLDivElement>(null);
   const cloudContainerRef = useRef<HTMLDivElement>(null);
   const seaViewRef = useRef<HTMLDivElement>(null);
-  const boatRef = useRef<HTMLDivElement>(null); // 船と釣り人用のref
+  const boatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sky = skyRef.current;
@@ -38,7 +38,7 @@ export default function Home() {
 
   const handleClickMore = () => {
     window.scrollTo({
-      top: window.innerHeight,
+      top: skyRef.current ? skyRef.current.offsetHeight : 0, // 空の画面の高さまでスクロール
       behavior: 'smooth',
     });
   };
@@ -58,14 +58,13 @@ export default function Home() {
         </div>
       </div>
 
-      <div ref={seaViewRef} className="h-1/5 bg-sea-blue flex items-center justify-center">
-        <div className="fishing-hook"></div>
-        <div className="fish fish1"></div>
-        <div className="fish fish2"></div>
-        <div className="fish fish3"></div>
+      <div ref={seaViewRef} className="h-1/5 bg-sea-blue flex items-center justify-center relative">
+        <div className="fishing-hook absolute"></div>
+        <div className="fish fish1 absolute"></div>
+        <div className="fish fish2 absolute"></div>
+        <div className="fish fish3 absolute"></div>
         {/* ... 他の魚 ... */}
       </div>
     </div>
-    // ここにゲームの内容を追加
   );
 }
